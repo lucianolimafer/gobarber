@@ -9,4 +9,4 @@ const AppProvider: React.FC = ({ children }) => (
   </AuthProvider>
 );
 
-export default AuthProvider;
+export default AppProvider;
