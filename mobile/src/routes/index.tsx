@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 
 const Auth = createStackNavigator();
 
@@ -8,11 +8,15 @@ import SignUp from '../pages/SignUp';
 
 
 
+
 const AuthRoutes: React.FC = () => (
   <Auth.Navigator
     screenOptions={{
+      gestureEnabled: true,
+      gestureDirection: "horizontal",
       headerShown: false,
-      cardStyle: { backgroundColor:'#312e38'}
+      cardStyle: { backgroundColor:'#312e38'},
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
     }}
   >
     <Auth.Screen name="SignIn" component={SignIn} />
