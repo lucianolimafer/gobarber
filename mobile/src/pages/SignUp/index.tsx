@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-
+import api from '../../services/api';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -43,6 +43,9 @@ const SignUp: React.FC = () => {
 
   const handleSignUp = useCallback(
     async (data: SignUpFormData) => {
+
+
+      console.log(data);
       try {
         formRef.current?.setErrors({});
 
@@ -58,11 +61,14 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        // Noteawait api.post('/users', data);
+        await api.post('/users', data);
 
-        //history.push('/');
+        Alert.alert(
+          'Cadastro realizado com sucesso',
+          'Você já pode fazer logon no aplicativo'
+        );
 
-
+        navigation.goBack();
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -78,7 +84,7 @@ const SignUp: React.FC = () => {
         );
       }
     },
-    [],
+    [navigation],
   );
 
   return (
@@ -136,7 +142,7 @@ const SignUp: React.FC = () => {
                 onSubmitEditing={() => formRef.current?.submitForm()}
               />
 
-              <Button onPress={() => formRef.current?.submitForm()}>Entrar</Button>
+              <Button onPress={() => formRef.current?.submitForm()}>Cadastrar</Button>
             </Form>
           </Container>
         </ScrollView>
