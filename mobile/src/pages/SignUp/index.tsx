@@ -40,7 +40,7 @@ const SignUp: React.FC = () => {
         enabled
       >
         <ScrollView
-        keyboardShouldPersistTaps="handled"
+          keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flex: 1 }}
         >
           <Container>
