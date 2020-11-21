@@ -1,27 +1,24 @@
 import React from 'react';
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+import { View, ActivityIndicator } from 'react-native';
 
-const Auth = createStackNavigator();
-
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
+import AppRoutes from './app.routes';
+import AuthRoutes from './auth.routes';
 
 
+import { useAuth } from '../hooks/auth';
 
+const Routes: React.FC = () => {
 
-const AuthRoutes: React.FC = () => (
-  <Auth.Navigator
-    screenOptions={{
-      gestureEnabled: true,
-      gestureDirection: "horizontal",
-      headerShown: false,
-      cardStyle: { backgroundColor:'#312e38'},
-      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-    }}
-  >
-    <Auth.Screen name="SignIn" component={SignIn} />
-    <Auth.Screen name="SignUp" component={SignUp} />
-  </Auth.Navigator>
-);
+  const { user, loading } = useAuth();
 
-export default AuthRoutes;
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    );
+  }
+  return user ? <AppRoutes /> : <AuthRoutes />;
+};
+
+export default Routes;
