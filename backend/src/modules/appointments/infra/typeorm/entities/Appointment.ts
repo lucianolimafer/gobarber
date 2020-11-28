@@ -8,7 +8,7 @@ import {
   JoinColumn
 } from 'typeorm';
 
-import User from '../../../models/User';
+import User from '../../../../users/infra/typeorm/entities/User';
 @Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
