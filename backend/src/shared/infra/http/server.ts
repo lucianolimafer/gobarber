@@ -5,6 +5,8 @@ import 'express-async-errors';
 import cors from 'cors';
 
 import '@shared/infra/typeorm';
+import '@shared/container';
+
 import routes from './routes';
 
 import uploadConfig from '@config/upload';
