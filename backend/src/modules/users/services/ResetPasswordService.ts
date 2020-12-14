@@ -50,8 +50,3 @@ class ResetPasswordService {
 }
 
 export default ResetPasswordService;
-
-// ToDo:
-// 2h expired link
-// userToken if
-// user if
