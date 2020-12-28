@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import { isEqual } from 'date-fns';
 
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
@@ -24,7 +24,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     //appointment.provider_id = provider_id;
 
     Object.assign(appointment, {
-      id: uuid(),
+      id: uuidv4(),
       date,
       provider_id
     });
