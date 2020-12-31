@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import User from '../../infra/typeorm/entities/User';
+import IFindAllProvidersDTO from '../../dtos/IFindAllProvidersDTO';
 
 
 class UsersRepository implements IUsersRepository {
@@ -21,7 +22,7 @@ class UsersRepository implements IUsersRepository {
     return findUser;
   }
 
-  public async findAllProviders(except_user_id?: string): Promise<User[]> {
+  public async findAllProviders({except_user_id}: IFindAllProvidersDTO): Promise<User[]> {
     let users = this.users;
 
     if(except_user_id) {
