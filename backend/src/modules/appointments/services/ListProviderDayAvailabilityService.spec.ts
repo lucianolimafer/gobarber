@@ -21,11 +21,13 @@ describe('ListProviderDayAvaliability', () => {
   it('should be able to list on day availability from provider', async () => {
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
+      user_id: '03030303',
       date: new Date(2021, 1, 20, 14, 0, 0),
     });
 
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
+      user_id: '03030303',
       date: new Date(2021, 1, 20, 15, 0, 0),
     });
 
@@ -40,7 +42,7 @@ describe('ListProviderDayAvaliability', () => {
       day: 20
     });
 
-    await expect(availability).toEqual(expect.arrayContaining([
+    expect(availability).toEqual(expect.arrayContaining([
       { hour: 8, available: false },
       { hour: 9, available: false },
       { hour: 10, available: false },
