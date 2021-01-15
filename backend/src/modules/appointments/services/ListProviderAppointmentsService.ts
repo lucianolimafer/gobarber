@@ -36,8 +36,6 @@ class ListProviderAppointmentsService{
         year
       });
 
-      console.log('Buscou do BD')
-
       await this.cacheProvider.save(cacheKEY, appointments);
     };
 
