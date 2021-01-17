@@ -5,6 +5,7 @@ import express, { Request, Response, NextFunction} from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { errors } from 'celebrate';
+import RateLimiter from './middlewares/RateLimiter';
 
 import '@shared/infra/typeorm';
 import '@shared/container';
@@ -17,12 +18,11 @@ import AppError from '@shared/errors/AppError';
 
 const app = express();
 
-app.use(RateLimiter);
 app.use(cors());
 
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
-import RateLimiter from './middlewares/RateLimiter';
+app.use(RateLimiter);
 
 app.use(routes);
 
