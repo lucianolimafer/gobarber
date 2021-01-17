@@ -9,7 +9,6 @@ import { errors } from 'celebrate';
 import '@shared/infra/typeorm';
 import '@shared/container';
 
-import RateLimiter from './middlewares/RateLimiter';
 
 import routes from './routes';
 
@@ -23,6 +22,8 @@ app.use(cors());
 
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
+import RateLimiter from './middlewares/RateLimiter';
+
 app.use(routes);
 
 app.use(errors());
